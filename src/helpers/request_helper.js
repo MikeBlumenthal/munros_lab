@@ -3,8 +3,8 @@ const RequestHelper = function (url) {
 }
 
 RequestHelper.prototype.get = function () {
-  return fetch(this.url)
-  .then(response => response.json() );
+  const myPromise = fetch(this.url)
+  return myPromise.then(response => response.json() );
 };
 
 module.exports = RequestHelper;

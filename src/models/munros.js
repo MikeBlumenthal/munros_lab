@@ -9,14 +9,15 @@ const Munros = function () {
 Munros.prototype.getData = function () {
   const url = `https://munroapi.herokuapp.com/api/munros`;
   const request = new RequestHelper(url);
-  request.get()
-  .then((data) => {
+  const myPromise = request.get()
+  myPromise.then((data) => {
     this.data = data;
     this.fixHand();
     const regions = this.getRegions();
     this.regions = regions;
     PubSub.publish('Munros:data-ready', regions);
   })
+
 };
 
 Munros.prototype.bindEvents = function() {
@@ -24,9 +25,6 @@ Munros.prototype.bindEvents = function() {
     this.sendData(event.detail);
   });
 };
-
-// Loch Tay to Rannoch Moor
-//
 
 Munros.prototype.fixHand = function() {
   this.data.find((element) => {
@@ -36,7 +34,7 @@ Munros.prototype.fixHand = function() {
 
 Munros.prototype.getRegions = function() {
   return this.data.map(munro => munro.region)
-    .filter((region, index, regions) => regions.indexOf(region) === index);
+  .filter((region, index, regions) => regions.indexOf(region) === index);
 }
 
 Munros.prototype.sendData = function(index) {

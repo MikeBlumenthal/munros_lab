@@ -7,7 +7,6 @@ const SelectView = function (element) {
 SelectView.prototype.bindEvents = function () {
   PubSub.subscribe('Munros:data-ready', (event) => {
     const allMunros = event.detail;
-    console.log(allMunros);
     this.populate(allMunros);
   })
   this.element.addEventListener('change', (event) => {
