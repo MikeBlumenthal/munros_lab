@@ -7,8 +7,9 @@ const ListView = function (element) {
 }
 
 ListView.prototype.bindEvents = function () {
-  PubSub.subscribe('Munros:data-ready', (event) => {
+  PubSub.subscribe('Munros:region-ready', (event) => {
     this.data = event.detail;
+    this.element.innerHTML = "";
     this.render();
   })
 };

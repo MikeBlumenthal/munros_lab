@@ -12,12 +12,16 @@ DetailView.prototype.display = function () {
     this.container.appendChild(list);
 
     const height = document.createElement('li')
-    height.textContent = `${this.object.height}`;
+    height.textContent = `${this.object.height}m`;
     list.appendChild(height);
 
     const meaning = document.createElement('li')
     meaning.textContent = `${this.object.meaning}`;
     list.appendChild(meaning);
+
+    const region = document.createElement('li')
+    region.textContent = `${this.object.region}`;
+    list.appendChild(region);
 
 };
 
